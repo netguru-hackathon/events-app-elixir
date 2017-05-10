@@ -19,8 +19,9 @@ defmodule Integrator.Router do
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", Integrator do
-  #   pipe_through :api
-  # end
+  scope "/api", Integrator.API do
+    pipe_through :api
+
+    resources "/events", EventController
+  end
 end
