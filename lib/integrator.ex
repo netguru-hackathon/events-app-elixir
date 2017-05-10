@@ -1,4 +1,7 @@
 defmodule Integrator do
+  @moduledoc """
+  Configures a main supervisor for the whole application.
+  """
   use Application
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
