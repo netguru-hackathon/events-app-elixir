@@ -5,11 +5,11 @@ defmodule Integrator.API.EventController do
 
   def index(conn, _params) do
     events = Repo.all(Event)
-    render(conn, "index.json", events: events)
+    render(conn, "index.json-api", data: events)
   end
 
   def show(conn, %{"id" => id}) do
     event = Repo.get!(Event, id)
-    render(conn, "show.json", event: event)
+    render(conn, "show.json-api", data: event)
   end
 end

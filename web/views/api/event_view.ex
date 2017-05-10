@@ -1,15 +1,11 @@
 defmodule Integrator.API.EventView do
   use Integrator.Web, :view
+  use JaSerializer.PhoenixView
 
-  def render("index.json", %{events: events}) do
-    %{data: render_many(events, Integrator.API.EventView, "event.json")}
-  end
+  attributes [:name, :description, :inserted_at, :updated_at]
+  
+  has_one :organisation,
+    field: :organisation_id,
+    type: "organisation"
 
-  def render("show.json", %{event: event}) do
-    %{data: render_one(event, Integrator.API.EventView, "event.json")}
-  end
-
-  def render("event.json", %{event: event}) do
-    %{id: event.id, name: event.name}
-  end
 end
