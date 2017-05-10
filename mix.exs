@@ -19,7 +19,7 @@ defmodule Integrator.Mixfile do
   def application do
     [mod: {Integrator, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :faker, :mime]]
+                    :phoenix_ecto, :postgrex, :faker, :mime, :oauth2]]
   end
 
   # Specifies which paths to compile per environment.
@@ -40,7 +40,8 @@ defmodule Integrator.Mixfile do
      {:cowboy, "~> 1.0"},
      {:credo, "~> 0.3", only: [:dev, :test]},
      {:faker, "~> 0.8", only: [:dev, :test]},
-     {:ja_serializer, "~> 0.12.0"}]
+     {:ja_serializer, "~> 0.12.0"},
+     {:oauth2, "~> 0.9"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
