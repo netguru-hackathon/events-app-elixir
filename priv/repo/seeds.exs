@@ -1,11 +1,7 @@
 # Script for populating the database. You can run it as:
 #
 #     mix run priv/repo/seeds.exs
-#
-# Inside the script, you can read and write to any of your
-# repositories directly:
-#
-#     Integrator.Repo.insert!(%Integrator.SomeModel{})
-#
-# We recommend using the bang functions (`insert!`, `update!`
-# and so on) as they will fail if something goes wrong.
+
+{:ok, org} = Integrator.Repo.insert(%Integrator.Organisation {name: "Netguru"})
+event = %Integrator.Event{name: "Hackathon", organisation_id: org.id, description: "Coding & drinking"}
+Integrator.Repo.insert(event)
