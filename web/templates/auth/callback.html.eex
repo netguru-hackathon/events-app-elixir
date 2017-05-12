@@ -1,5 +1,0 @@
-<ul>
-  <li>Email: <%= @email %></li>
-  <li>Team Id: <%= @team_id %></li>
-  <li>User Id: <%= @user_id %></li>
-</ul>

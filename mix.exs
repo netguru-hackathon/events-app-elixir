@@ -41,7 +41,8 @@ defmodule Integrator.Mixfile do
      {:credo, "~> 0.3", only: [:dev, :test]},
      {:faker, "~> 0.8", only: [:dev, :test]},
      {:ja_serializer, "~> 0.12.0"},
-     {:oauth2, "~> 0.9"}]
+     {:oauth2, "~> 0.9"},
+     {:guardian, "~> 0.14"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

@@ -35,6 +35,17 @@ defmodule Slack do
     Client.get!(client, url, headers, opts)
   end
 
+  def get_user(client) do
+    case Slack.get!(client, "/api/users.identity").body do
+      %{"ok" => true, "team" => team, "user" => user} -> _get_user(user, team)
+      %{"ok" => false, "error" => "not_authed"} -> {:error, "Invalid token"}
+    end
+  end
+  defp _get_user(user, team) do
+    user_params = %{email: user["email"], slack_id: user["id"], slack_team_id: team["id"]}
+    {:ok, user_params}
+  end
+
   # Strategy Callbacks
 
   def authorize_url(client, params) do
