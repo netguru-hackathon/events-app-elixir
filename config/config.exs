@@ -29,6 +29,22 @@ config :mime, :types, %{
   "application/vnd.api+json" => ["json-api"]
 }
 
+# Configure oauth2 strategies
+config :integrator, Slack,
+  client_id: System.get_env("SLACK_CLIENT_ID") || raise("ENV variable not set: SLACK_CLIENT_ID"),
+  client_secret: System.get_env("SLACK_CLIENT_SECRET") || raise("ENV variable not set: SLACK_CLIENT_SECRET"),
+  redirect_uri: System.get_env("SLACK_REDIRECT_URI") || raise("ENV variable not set: SLACK_CLIENT_URI")
+
+config :guardian, Guardian,
+  allowed_algos: ["HS512"], # optional
+  verify_module: Guardian.JWT,  # optional
+  issuer: "MyApp",
+  ttl: { 30, :days },
+  allowed_drift: 2000,
+  verify_issuer: true, # optional
+  secret_key: "YgkQAfevhyqaEovyOJx/SMoUo6ysmaPP3ctQhHbBNhcBTYw2lb0s4Wkvh6su7+72",
+  serializer: Integrator.GuardianSerializer
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
