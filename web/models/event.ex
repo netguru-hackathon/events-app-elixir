@@ -5,7 +5,7 @@ defmodule Integrator.Event do
     field :name, :string
     field :description, :string
     belongs_to :organisation, Integrator.Organisation
-
+    has_many :items, Integrator.Item
     timestamps()
   end
 
