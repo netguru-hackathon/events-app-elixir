@@ -6,7 +6,6 @@ defmodule Integrator.API.AuthController do
   def create(conn, %{"code" => code}) do
     client = Slack.get_token!(code: code)
 
-      # require IEx; IEx.pry
     conn = case Slack.get_user(client) do
       {:ok, user_params} -> _callback(:success, conn, user_params)
       {:error, reason} -> _callback(:error, conn, reason)
@@ -22,12 +21,12 @@ defmodule Integrator.API.AuthController do
       {:ok, user} ->
          new_conn = Guardian.Plug.api_sign_in(conn, user)
          jwt = Guardian.Plug.current_token(new_conn)
-         claims = Guardian.Plug.claims(new_conn)
-         exp = Map.get(claims, "exp")
+         {:ok, claims} = Guardian.Plug.claims(new_conn)
 
+         exp = Map.get(claims, "exp")
          new_conn
          |> put_resp_header("authorization", "Bearer #{jwt}")
-         |> put_resp_header("x-expires", exp)
+         |> put_resp_header("x-expires", Integer.to_string(exp))
          |> render "login.json", user: user, jwt: jwt, exp: exp
       {:error, _changeset} ->
         conn
