@@ -29,6 +29,12 @@ defmodule Integrator.Router do
     resources "/session", SessionController, only: [:create, :delete], singleton: true
   end
 
+  scope "/admin", Integrator.Admin do
+    pipe_through [:browser, :browser_auth] # Use the default browser stack
+
+    resources "/users", UserController, only: [:index, :show]
+  end
+
   scope "/api", Integrator.API do
     pipe_through :api
 
