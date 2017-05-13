@@ -30,14 +30,17 @@ defmodule Integrator.Router do
     resources "/session", SessionController, only: [:create, :delete], singleton: true
   end
 
+
   scope "/", Integrator do
     pipe_through [:browser, :browser_auth]
     get "/logged_in_page", LoggedInController, :index
+
   end
 
   scope "/api", Integrator.API do
     pipe_through :api
 
     resources "/events", EventController
+    resources "/session", AuthController, singular: true
   end
 end

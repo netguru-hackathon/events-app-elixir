@@ -1,0 +1,6 @@
+<h1>Users:</h1>
+<ul>
+  <%= for user <- @users do %>
+    <li><%= user.email %>, slack_id: <%= user.slack_id %>, slack_team_id: <%= user.slack_team_id %></li>
+  <% end %>
+</ul>
