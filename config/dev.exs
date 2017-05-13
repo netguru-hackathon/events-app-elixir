@@ -39,3 +39,6 @@ config :integrator, Integrator.Repo,
   database: "integrator_dev",
   hostname: "localhost",
   pool_size: 10
+
+# Show debuggin output for oauth2
+config :oauth2, debug: true

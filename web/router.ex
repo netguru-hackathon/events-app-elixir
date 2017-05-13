@@ -17,6 +17,9 @@ defmodule Integrator.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/auth", AuthController, :index
+    get "/auth/callback", AuthController, :callback
+    resources "/session", SessionController, only: [:create, :delete], singleton: true
   end
 
   scope "/api", Integrator.API do

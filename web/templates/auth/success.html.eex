@@ -1,0 +1,5 @@
+<ul>
+  <li>Email: <%= @user.email %></li>
+  <li>Team Id: <%= @user.slack_team_id %></li>
+  <li>User Id: <%= @user.slack_id %></li>
+</ul>
