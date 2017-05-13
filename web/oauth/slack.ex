@@ -21,6 +21,7 @@ defmodule Slack do
     |> Keyword.merge(config())
     |> Client.new()
   end
+  def client(token), do: add_token(client(), token)
 
   def authorize_url!(params \\ []) do
     Client.authorize_url!(client(), params)
@@ -28,6 +29,11 @@ defmodule Slack do
 
   def get_token!(params \\ [], headers \\ []) do
     Client.get_token!(client(), params)
+  end
+
+  def add_token(client, token) do
+    token = OAuth2.AccessToken.new(%{"access_token" => token})
+    %{client | headers: [], params: %{}, token: token}
   end
 
   def get!(client, url, headers \\ [], opts \\ []) do
@@ -38,7 +44,7 @@ defmodule Slack do
   def get_user(client) do
     case Slack.get!(client, "/api/users.identity").body do
       %{"ok" => true, "team" => team, "user" => user} -> _get_user(user, team)
-      %{"ok" => false, "error" => "not_authed"} -> {:error, "Invalid token"}
+      %{"ok" => false, "error" => error} -> {:error, error}
     end
   end
   defp _get_user(user, team) do
