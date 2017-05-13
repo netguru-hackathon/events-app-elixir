@@ -30,7 +30,7 @@ defmodule Integrator.Router do
     resources "/session", SessionController, only: [:create, :delete], singleton: true
   end
 
-  scope "/admin", Integrator.Admin
+  scope "/admin", Integrator.Admin do
     pipe_through [:browser, :browser_auth]
 
     resources "/users", UserController, only: [:index, :show]
