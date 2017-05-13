@@ -31,10 +31,8 @@ defmodule Integrator.User do
     end
   end
   defp _create_for_slack(params) do
-    user = %User{}
+    %User{}
     |> change(params)
     |> Repo.insert()
-
-    if user.valid?, do: {:ok, user}, else: {:error, user}
   end
 end
