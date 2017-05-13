@@ -33,6 +33,7 @@ defmodule Integrator.Router do
     pipe_through [:browser, :browser_auth] # Use the default browser stack
 
     resources "/users", UserController, only: [:index, :show]
+    resources "/events", EventController
   end
 
   scope "/api", Integrator.API do

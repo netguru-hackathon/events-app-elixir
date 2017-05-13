@@ -1,0 +1,9 @@
+Events
+
+<ul>
+  <%= for event <- @events do %>
+    <li>
+      <strong><%= event.name %></strong> <%= event.description %>
+    </li>
+  <% end %>
+</ul>
