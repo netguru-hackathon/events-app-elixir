@@ -7,11 +7,14 @@ defmodule Integrator.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug Props.Web.Plugs.CurrentUser
   end
 
   pipeline :browser_auth do
     plug Guardian.Plug.VerifySession
     plug Guardian.Plug.LoadResource
+    plug Guardian.Plug.EnsureAuthenticated
+    plug Props.Web.Plugs.CurrentUser
   end
 
   pipeline :api do
@@ -19,14 +22,17 @@ defmodule Integrator.Router do
   end
 
   scope "/", Integrator do
-    pipe_through [:browser, :browser_auth] # Use the default browser stack
-
+    pipe_through :browser
     get "/", PageController, :index
     get "/auth", AuthController, :index
     get "/auth/callback", AuthController, :callback
     get "/logout", SessionController, :logout
-    get "/logged_in_page", LoggedInController, :index
     resources "/session", SessionController, only: [:create, :delete], singleton: true
+  end
+
+  scope "/", Integrator do
+    pipe_through [:browser, :browser_auth]
+    get "/logged_in_page", LoggedInController, :index
   end
 
   scope "/api", Integrator.API do

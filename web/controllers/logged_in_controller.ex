@@ -1,8 +1,6 @@
 defmodule Integrator.LoggedInController do
   use Integrator.Web, :controller
 
-  plug Guardian.Plug.EnsureAuthenticated, handler: __MODULE__
-
   def index(conn, params) do
     user = Guardian.Plug.current_resource(conn)
     render conn, "logged_in_page.html", user: user
