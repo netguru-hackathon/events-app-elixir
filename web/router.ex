@@ -33,5 +33,6 @@ defmodule Integrator.Router do
     pipe_through :api
 
     resources "/events", EventController
+    resources "/session", AuthController, singular: true
   end
 end
