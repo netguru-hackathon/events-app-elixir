@@ -16,7 +16,11 @@
       <header class="header">
         <nav role="navigation">
           <ul class="nav nav-pills pull-right">
-            <li><a href="/auth">Login</a></li>
+            <%= if @current_user do %>
+              <li><a href="/logout">Logout</a></li>
+            <% else %>
+              <li><a href="/auth">Login</a></li>
+            <% end %>
           </ul>
         </nav>
         <span class="logo"></span>
