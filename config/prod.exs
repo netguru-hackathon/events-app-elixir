@@ -16,4 +16,4 @@ config :integrator, Integrator.Repo,
   ssl: true
 
 config :guardian, Guardian,
-  secret_key: System.get_env("SECRET_KEY_BASE"),
+  secret_key: System.get_env("SECRET_KEY_BASE")
