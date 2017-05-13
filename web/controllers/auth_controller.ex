@@ -25,8 +25,8 @@ defmodule Integrator.AuthController do
       {:ok, user} ->
         conn
         |> put_flash(:info, "Slack auth successful")
-        |> assign(:user, user)
-        |> render("success.html")
+        |> Guardian.Plug.sign_in(user)
+        |> redirect(to: "/")
       {:error, changeset} ->
         conn
         |> put_flash(:error, "Slack auth failed")
