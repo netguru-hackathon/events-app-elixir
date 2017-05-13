@@ -4,7 +4,7 @@ defmodule Integrator.AuthController do
   alias Integrator.User
 
   def index(conn, _params) do
-    redirect conn, external: Slack.authorize_url!(scope: "identity.basic")
+    redirect conn, external: Slack.authorize_url!(scope: "identity.basic,identity.email,identity.team")
   end
 
   def callback(conn, %{"code" => code}) do
