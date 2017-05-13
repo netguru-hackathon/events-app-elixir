@@ -17,3 +17,5 @@ config :integrator, Integrator.Repo,
 
 config :guardian, Guardian,
   secret_key: System.get_env("SECRET_KEY_BASE")
+
+config :oauth2, debug: true
