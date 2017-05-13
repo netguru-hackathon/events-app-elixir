@@ -4,7 +4,8 @@ defmodule Integrator.API.AuthView do
   def render("login.json", params) do
     %{
       jwt: params[:jwt],
-      expire: params[:exp]
+      expire: params[:exp],
+      user: params[:user]
     }
   end
 end

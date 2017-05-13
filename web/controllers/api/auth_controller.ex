@@ -27,7 +27,7 @@ defmodule Integrator.API.AuthController do
          new_conn
          |> put_resp_header("authorization", "Bearer #{jwt}")
          |> put_resp_header("x-expires", Integer.to_string(exp))
-         |> render "login.json", user: user, jwt: jwt, exp: exp
+         |> render "login.json", user: user, jwt: jwt, exp: exp, user: user_params
       {:error, _changeset} ->
         conn
         |> put_status(401)
