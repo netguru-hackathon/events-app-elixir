@@ -13,7 +13,7 @@ defmodule Integrator.API.AuthController do
   end
 
   defp _callback(:error, conn, reason) do
-    json conn, %{error: "Chujowy token :sad_face:"}
+    json conn, %{error: reason}
   end
 
   defp _callback(:success, conn, user_params) do
@@ -27,7 +27,7 @@ defmodule Integrator.API.AuthController do
          new_conn
          |> put_resp_header("authorization", "Bearer #{jwt}")
          |> put_resp_header("x-expires", Integer.to_string(exp))
-         |> render "login.json", user: user, jwt: jwt, exp: exp, user: user_params
+         |> render "login.json", jwt: jwt, exp: exp, user: user_params
       {:error, _changeset} ->
         conn
         |> put_status(401)
