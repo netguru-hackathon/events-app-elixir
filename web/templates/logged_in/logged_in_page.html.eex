@@ -1,1 +1,2 @@
 logged
+<%= @current_user.email %>
