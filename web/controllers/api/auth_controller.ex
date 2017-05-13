@@ -3,8 +3,8 @@ defmodule Integrator.API.AuthController do
 
   alias Integrator.User
 
-  def create(conn, %{"code" => code}) do
-    client = Slack.get_token!(code: code)
+  def create(conn, params) do
+    client = Slack.get_token!(code: params["code"])
 
     conn = case Slack.get_user(client) do
       {:ok, user_params} -> _callback(:success, conn, user_params)
@@ -13,7 +13,7 @@ defmodule Integrator.API.AuthController do
   end
 
   defp _callback(:error, conn, reason) do
-    json conn, %{}
+    json conn, %{error: "Chujowy token :sad_face:"}
   end
 
   defp _callback(:success, conn, user_params) do
