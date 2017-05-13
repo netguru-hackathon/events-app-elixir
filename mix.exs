@@ -22,6 +22,8 @@ defmodule Integrator.Mixfile do
                     :phoenix_ecto, :postgrex, :faker, :mime]]
   end
 
+
+
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "web", "test/support"]
   defp elixirc_paths(_),     do: ["lib", "web"]
@@ -39,7 +41,7 @@ defmodule Integrator.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:credo, "~> 0.3", only: [:dev, :test]},
-     {:faker, "~> 0.8", only: [:dev, :test]},
+     {:faker, "~> 0.8"},
      {:ja_serializer, "~> 0.12.0"}]
   end
 
