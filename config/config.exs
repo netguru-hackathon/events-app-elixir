@@ -32,8 +32,8 @@ config :mime, :types, %{
 # Configure oauth2 strategies
 config :integrator, Slack,
   client_id: System.get_env("SLACK_CLIENT_ID") || raise("ENV variable not set: SLACK_CLIENT_ID"),
-  client_secret: System.get_env("SLACK_CLIENT_SECRET") || raise("ENV variable not set: SLACK_CLIENT_SECRET"),
-  redirect_uri: System.get_env("SLACK_REDIRECT_URI") || raise("ENV variable not set: SLACK_CLIENT_URI")
+  client_secret: System.get_env("SLACK_CLIENT_SECRET") || raise("ENV variable not set: SLACK_CLIENT_SECRET")
+  # redirect_uri: System.get_env("SLACK_REDIRECT_URI") || raise("ENV variable not set: SLACK_CLIENT_URI")
 
 config :guardian, Guardian,
   allowed_algos: ["HS512"], # optional
