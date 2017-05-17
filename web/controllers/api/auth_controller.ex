@@ -6,7 +6,7 @@ defmodule Integrator.API.AuthController do
   def create(conn, params) do
     client = Slack.get_token!(code: params["code"])
 
-    conn = case Slack.get_user(client) do
+    case Slack.get_user(client) do
       {:ok, user_params} -> _callback(:success, conn, user_params)
       {:error, reason} -> _callback(:error, conn, reason)
     end
