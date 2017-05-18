@@ -19,6 +19,10 @@ defmodule Integrator.Router do
 
   pipeline :api do
     plug :accepts, ["json-api"]
+    plug Guardian.Plug.VerifyHeader, realm: "Bearer"
+    plug Guardian.Plug.LoadResource
+    plug JaSerializer.ContentTypeNegotiation
+    plug JaSerializer.Deserializer
   end
 
   scope "/", Integrator do

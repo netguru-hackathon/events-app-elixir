@@ -1,5 +1,6 @@
 defmodule Integrator.API.EventController do
   use Integrator.Web, :controller
+  plug Guardian.Plug.EnsureAuthenticated, handler: __MODULE__
 
   alias Integrator.Event
 
@@ -11,5 +12,11 @@ defmodule Integrator.API.EventController do
   def show(conn, %{"id" => id}) do
     event = Repo.get!(Event, id)
     render(conn, "show.json-api", data: event)
+  end
+
+  def unauthenticated(conn, _params) do
+    conn
+    |> put_status(401)
+    |> render "error.json", message: "Authentication required"
   end
 end
