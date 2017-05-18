@@ -10,8 +10,14 @@ defmodule Integrator.API.EventController do
   end
 
   def show(conn, %{"id" => id}) do
-    event = Repo.get!(Event, id)
-    render(conn, "show.json-api", data: event)
+    event = Repo.get!(Event, id) |> Repo.preload([:items])
+    render(conn, "show.json-api",
+      data: event,
+      opts: [
+        include: "items",
+        fields: %{"items" => "name,description"}
+      ]
+    )
   end
 
   def unauthenticated(conn, _params) do
