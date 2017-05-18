@@ -4,8 +4,8 @@ defmodule Integrator.API.EventController do
 
   alias Integrator.Event
 
-  def index(conn, _params) do
-    events = Repo.all(Event)
+  def index(conn, params) do
+    events = Repo.paginate(Event, page: params["page"]["page"])
     render(conn, "index.json-api", data: events)
   end
 

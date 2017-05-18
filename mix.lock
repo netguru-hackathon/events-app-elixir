@@ -18,6 +18,7 @@
   "inflex": {:hex, :inflex, "1.8.0", "7cfc752ae244b30b42ac9cf4c092771b485bc3424139aba4a933e54be8c63931", [:mix], [], "hexpm"},
   "ja_serializer": {:hex, :ja_serializer, "0.12.0", "ba4ec5fc7afa6daba815b5cb2b9bd0de410554ac4f0ed54e954d39decb353ca4", [:mix], [{:inflex, "~> 1.4", [hex: :inflex, repo: "hexpm", optional: false]}, {:plug, "> 1.0.0", [hex: :plug, repo: "hexpm", optional: false]}, {:poison, ">= 1.4.0", [hex: :poison, repo: "hexpm", optional: false]}, {:scrivener, "~> 1.2 or ~> 2.0", [hex: :scrivener, repo: "hexpm", optional: true]}], "hexpm"},
   "jose": {:hex, :jose, "1.8.3", "1285151e6f3b70aa8b60c27801aed6d20f7bb9e87116fd7d1e405ea450549aad", [:mix, :rebar3], [{:base64url, "~> 0.0.1", [hex: :base64url, repo: "hexpm", optional: false]}], "hexpm"},
+  "kerosene": {:hex, :kerosene, "0.6.1", "668dcd09f3057162fa9b09bec62aad014d0af6a2350893c3d3783824d9b20eb1", [:mix], [{:ecto, "~> 2.0", [hex: :ecto, repo: "hexpm", optional: false]}, {:phoenix_html, "~> 2.7", [hex: :phoenix_html, repo: "hexpm", optional: false]}, {:plug, "~> 1.0", [hex: :plug, repo: "hexpm", optional: false]}], "hexpm"},
   "metrics": {:hex, :metrics, "1.0.1", "25f094dea2cda98213cecc3aeff09e940299d950904393b2a29d191c346a8486", [:rebar3], [], "hexpm"},
   "mime": {:hex, :mime, "1.1.0", "01c1d6f4083d8aa5c7b8c246ade95139620ef8effb009edde934e0ec3b28090a", [:mix], [], "hexpm"},
   "mimerl": {:hex, :mimerl, "1.0.2", "993f9b0e084083405ed8252b99460c4f0563e41729ab42d9074fd5e52439be88", [:rebar3], [], "hexpm"},
@@ -32,5 +33,7 @@
   "poolboy": {:hex, :poolboy, "1.5.1", "6b46163901cfd0a1b43d692657ed9d7e599853b3b21b95ae5ae0a777cf9b6ca8", [:rebar], [], "hexpm"},
   "postgrex": {:hex, :postgrex, "0.13.2", "2b88168fc6a5456a27bfb54ccf0ba4025d274841a7a3af5e5deb1b755d95154e", [:mix], [{:connection, "~> 1.0", [hex: :connection, repo: "hexpm", optional: false]}, {:db_connection, "~> 1.1", [hex: :db_connection, repo: "hexpm", optional: false]}, {:decimal, "~> 1.0", [hex: :decimal, repo: "hexpm", optional: false]}], "hexpm"},
   "ranch": {:hex, :ranch, "1.3.2", "e4965a144dc9fbe70e5c077c65e73c57165416a901bd02ea899cfd95aa890986", [:rebar3], [], "hexpm"},
+  "scrivener": {:hex, :scrivener, "2.3.0", "16b1d744202d47233798205447b35592d96a209241c566304f84ddef63c718b2", [:mix], [], "hexpm"},
+  "scrivener_ecto": {:hex, :scrivener_ecto, "1.2.1", "dfa1a1584fed47f2280c0e066531edefe23c14bc66183309dfb1f3ed44629e5c", [:mix], [{:ecto, "~> 2.0", [hex: :ecto, repo: "hexpm", optional: false]}, {:postgrex, "~> 0.11.0 or ~> 0.12.0 or ~> 0.13.0", [hex: :postgrex, repo: "hexpm", optional: true]}, {:scrivener, "~> 2.3", [hex: :scrivener, repo: "hexpm", optional: false]}], "hexpm"},
   "ssl_verify_fun": {:hex, :ssl_verify_fun, "1.1.1", "28a4d65b7f59893bc2c7de786dec1e1555bd742d336043fe644ae956c3497fbe", [:make, :rebar], [], "hexpm"},
   "uuid": {:hex, :uuid, "1.1.7", "007afd58273bc0bc7f849c3bdc763e2f8124e83b957e515368c498b641f7ab69", [:mix], [], "hexpm"}}
