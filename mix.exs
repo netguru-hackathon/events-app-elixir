@@ -19,7 +19,7 @@ defmodule Integrator.Mixfile do
   def application do
     [mod: {Integrator, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :faker, :mime, :oauth2]]
+                    :phoenix_ecto, :postgrex, :faker, :mime, :oauth2, :scrivener_ecto]]
   end
 
 
@@ -44,7 +44,8 @@ defmodule Integrator.Mixfile do
      {:faker, "~> 0.8"},
      {:ja_serializer, "~> 0.12.0"},
      {:oauth2, "~> 0.9"},
-     {:guardian, "~> 0.14"}]
+     {:guardian, "~> 0.14"},
+     {:scrivener_ecto, "~> 1.0"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

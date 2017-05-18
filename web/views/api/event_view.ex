@@ -3,7 +3,7 @@ defmodule Integrator.API.EventView do
   use JaSerializer.PhoenixView
 
   location "/events/:id"
-  attributes [:name, :description, :inserted_at, :updated_at]
+  attributes [:name, :description, :inserted_at, :updated_at, :avatar_url]
 
   has_one :organisation,
     include: false,
