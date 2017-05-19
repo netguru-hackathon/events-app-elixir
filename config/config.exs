@@ -13,7 +13,7 @@ config :integrator,
 config :integrator, Integrator.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "J0JUco5FqXNHv/c0u2B9RTS7bioaV6CacNuemjFrt0BxAdDTl+/jiVIowMjPR4zp",
-  render_errors: [view: Integrator.ErrorView, accepts: ~w(html json)],
+  render_errors: [view: Integrator.ErrorView, accepts: ~w(html json-api)],
   pubsub: [name: Integrator.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
