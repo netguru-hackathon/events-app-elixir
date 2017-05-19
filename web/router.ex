@@ -21,8 +21,12 @@ defmodule Integrator.Router do
     plug :accepts, ["json-api"]
     plug Guardian.Plug.VerifyHeader, realm: "Bearer"
     plug Guardian.Plug.LoadResource
-    # plug JaSerializer.ContentTypeNegotiation
-    # plug JaSerializer.Deserializer
+    plug JaSerializer.ContentTypeNegotiation
+    plug JaSerializer.Deserializer
+  end
+
+  pipeline :api_auth do
+    plug :accepts, ["json"]
   end
 
   scope "/", Integrator do
@@ -50,6 +54,11 @@ defmodule Integrator.Router do
     pipe_through :api
 
     resources "/events", EventController
-    resources "/session", AuthController, singular: true
+  end
+
+  scope "/api/session", Integrator.API do
+    pipe_through :api_auth
+
+    resources "/", AuthController, singular: true
   end
 end
