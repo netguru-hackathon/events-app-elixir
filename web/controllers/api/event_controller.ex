@@ -14,7 +14,7 @@ defmodule Integrator.API.EventController do
       nil ->
         conn
         |> put_status(404)
-        |> render(Integrator.API.ErrorView, "404.json-api")
+        |> render(Integrator.ErrorView, "404.json-api")
       event ->
         conn
         |> render("show.json-api",
