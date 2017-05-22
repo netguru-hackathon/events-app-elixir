@@ -1,0 +1,363 @@
+swagger: '2.0'
+paths:
+
+  /api/session:
+    post:
+      tags:
+        - Session
+      summary: ''
+      responses:
+        '201':
+          description: Success
+        '400':
+          description: Client Error
+      produces:
+        - application/json
+      parameters:
+        - x-example: '{"code":"Slack code"}'
+          schema: string
+          required: true
+          name: code
+          in: body
+          description: Authorisation Code Grant
+      operationId: create_session
+      description: Auth user with slack
+      consumes:
+        - application/json
+
+  '/api/events/{id}':
+    get:
+      tags:
+        - Event
+      security:
+        - jwt: []
+      summary: Get event
+      responses:
+        '200':
+          schema:
+            type: object
+            required:
+              - data
+            properties:
+              included:
+                type: array
+                items:
+                  properties:
+                    type:
+                      type: string
+                      example: item
+                    id:
+                      type: string
+                      example: '1'
+                    attributes:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: monetize bricks-and-clicks infomediaries
+                        description:
+                          type: string
+                          example: Et ea nostrum consequatur libero. Aspernatur soluta rerum provident. Qui est est magnam quaerat ipsam et.
+                description: Included resources
+              data:
+                $ref: '#/definitions/EventResource'
+            description: 'A JSON-API document with a single [EventResource](#eventresource) resource'
+          description: Success
+      produces:
+        - application/vnd.api+json
+      parameters:
+        - x-example: 1
+          type: integer
+          required: true
+          name: id
+          in: path
+          description: Event id
+      operationId: show_event
+      description: Query for event
+
+  /api/events:
+    get:
+      tags:
+        - Events
+      summary: List events
+      security:
+        - jwt: []
+      responses:
+        '200':
+          schema:
+            type: object
+            required:
+              - data
+            properties:
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to this page of results
+                    example: /events?page[page]=2&page[page-size]=5
+                  prev:
+                    type:
+                      string
+                    description: Link to the previous page of results
+                    example: /events?page[page]=1&page[page-size]=5
+                  next:
+                    type:
+                      string
+                    description: Link to the next page of results
+                    example: /events?page[page]=3&page[page-size]=5
+                  last:
+                    type: string
+                    description: Link to the last page of results
+                    example: /events?page[page]=3&page[page-size]=5
+                  first:
+                    type: string
+                    description: Link to the first page of results
+                    example: /events?page[page]=1&page[page-size]=5
+
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/EventResource'
+                description: 'Content with [EventResource](#eventresource) objects'
+            description: 'A page of [EventResource](#eventresource) results'
+          description: Success
+      produces:
+        - application/vnd.api+json
+      parameters:
+        - type: integer
+          required: false
+          name: 'page[page-size]'
+          minimum: 1
+          in: query
+          description: Number of elements per page
+        - type: integer
+          required: false
+          name: 'page[page]'
+          minimum: 1
+          in: query
+          description: Number of the page
+      operationId: list_events
+      description: Query for events. This operation supports pagination
+info:
+  version: '1.0'
+  title: Integrator
+host: 'localhost:4000'
+securityDefinitions:
+  jwt:
+    type: apiKey
+    in: header
+    name: Authorization
+
+definitions:
+
+  Items:
+    type: object
+    required:
+      - data
+    properties:
+      meta:
+        type: object
+        properties:
+          total-pages:
+            type: integer
+            description: The total number of pages available
+          total-count:
+            type: integer
+            description: The total number of items available
+      links:
+        type: object
+        properties:
+          self:
+            type: string
+            description: Link to this page of results
+          prev:
+            type:
+              string
+            description: Link to the previous page of results
+          next:
+            type:
+              string
+            description: Link to the next page of results
+          last:
+            type: string
+            description: Link to the last page of results
+          first:
+            type: string
+            description: Link to the first page of results
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/ItemResource'
+        description: 'Content with [ItemResource](#itemresource) objects'
+    description: 'A page of [ItemResource](#itemresource) results'
+
+  ItemResource:
+    type: object
+    properties:
+      type:
+        type: string
+        description: The JSON-API resource type
+      relationships:
+        type: object
+        properties: {}
+      links:
+        type: object
+        properties: {}
+      id:
+        type: string
+        description: The JSON-API resource ID
+      attributes:
+        type: object
+        required:
+          - name
+          - description
+        properties:
+          name:
+            type: string
+            example: Incredible item name
+            description: Item name
+          id:
+            type: string
+            example: '1'
+            description: Unique identifier
+          description:
+            type: string
+            example: Lorem Incredible item
+            description: Item description
+    description: Item
+
+  Item:
+    type: object
+    required:
+      - data
+    properties:
+      links:
+        type: object
+        properties:
+          self:
+            type: string
+            description: the link that generated the current response document.
+      included:
+        type: array
+        items: {}
+        description: Included resources
+      data:
+        $ref: '#/definitions/ItemResource'
+    description: 'A JSON-API document with a single [ItemResource](#itemresource) resource'
+
+  Events:
+    type: object
+    required:
+      - data
+    properties:
+      meta:
+        type: object
+        properties:
+          total-pages:
+            type: integer
+            description: The total number of pages available
+          total-count:
+            type: integer
+            description: The total number of items available
+      links:
+        type: object
+        properties:
+          self:
+            type: string
+            description: Link to this page of results
+          prev:
+            type:
+              string
+            description: Link to the previous page of results
+          next:
+            type:
+              string
+            description: Link to the next page of results
+          last:
+            type: string
+            description: Link to the last page of results
+          first:
+            type: string
+            description: Link to the first page of results
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/EventResource'
+        description: 'Content with [EventResource](#eventresource) objects'
+    description: 'A page of [EventResource](#eventresource) results'
+
+  EventResource:
+    type: object
+    properties:
+      type:
+        type: string
+        description: The JSON-API resource type
+        example: event
+      relationships:
+        type: object
+        properties:
+          items:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      description: Type of related items resource
+                      example: item
+                    id:
+                      type: string
+                      description: Related items resource id
+                      example: '1'
+      links:
+        type: object
+        properties:
+          self:
+            type: string
+            description: the link that generated the current response document.
+            example: /events/1
+      id:
+        type: string
+        description: The JSON-API resource ID
+        example: '1'
+      attributes:
+        type: object
+        required:
+          - name
+        properties:
+          name:
+            type: string
+            example: Amazing event name
+            description: Event name
+          description:
+            type: string
+            example: Lorem amazing event
+            description: Event description
+          avatar_url:
+            type: string
+            example: 'http://robohash.org/set_set1/bgset_bg2/8TaB4QkJEKSFv70fQCVz'
+            description: Image url
+    description: Event
+
+  Event:
+    type: object
+    required:
+      - data
+    properties:
+      links:
+        type: object
+        properties:
+          self:
+            type: string
+            description: the link that generated the current response document.
+      included:
+        type: array
+        items: {}
+        description: Included resources
+      data:
+        $ref: '#/definitions/EventResource'
+    description: 'A JSON-API document with a single [EventResource](#eventresource) resource'

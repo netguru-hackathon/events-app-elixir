@@ -45,7 +45,9 @@ defmodule Integrator.Mixfile do
      {:ja_serializer, "~> 0.12.0"},
      {:oauth2, "~> 0.9"},
      {:guardian, "~> 0.14"},
-     {:scrivener_ecto, "~> 1.0"}]
+     {:scrivener_ecto, "~> 1.0"},
+     {:phoenix_swagger, git: "https://github.com/xerions/phoenix_swagger.git", tag: "master"},
+     {:ex_json_schema, "~> 0.5"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
