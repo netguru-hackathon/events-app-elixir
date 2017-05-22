@@ -39,11 +39,12 @@ defmodule Integrator.API.AuthController do
          {:ok, claims} = Guardian.Plug.claims(new_conn)
 
          exp = Map.get(claims, "exp")
+         data = %{token: jwt, expire: exp}
          new_conn
          |> put_resp_header("authorization", "Bearer #{jwt}")
          |> put_resp_header("x-expires", Integer.to_string(exp))
          |> put_status(201)
-         |> render "login.json", jwt: jwt, exp: exp, user: user_params
+         |> render "show.json-api", data: data
       {:error, _changeset} ->
         conn
         |> put_status(401)

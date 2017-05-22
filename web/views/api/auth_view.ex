@@ -1,11 +1,15 @@
 defmodule Integrator.API.AuthView do
   use Integrator.Web, :view
+  use JaSerializer.PhoenixView
 
-  def render("login.json", params) do
-    %{
-      jwt: params[:jwt],
-      expire: params[:exp],
-      user: params[:user]
-    }
+  attributes [:token, :expire]
+
+  def type do
+    "sessions"
+  end
+
+  # Temporary
+  def id(_, __) do
+    123
   end
 end
