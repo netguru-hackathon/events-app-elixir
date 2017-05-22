@@ -1,6 +1,7 @@
 swagger: '2.0'
 schemes:
   - https
+  - http
 paths:
 
   /api/session:
@@ -144,7 +145,6 @@ paths:
 info:
   version: '1.0'
   title: Integrator
-host: "integrator-elixir.herokuapp.com"
 securityDefinitions:
   jwt:
     type: apiKey
