@@ -39,7 +39,7 @@ defmodule Integrator.API.AuthController do
          {:ok, claims} = Guardian.Plug.claims(new_conn)
 
          exp = Map.get(claims, "exp")
-         data = %{token: jwt, expire: exp}
+         data = %{token: jwt, expire: exp, id: user.id}
          new_conn
          |> put_resp_header("authorization", "Bearer #{jwt}")
          |> put_resp_header("x-expires", Integer.to_string(exp))

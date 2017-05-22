@@ -7,9 +7,4 @@ defmodule Integrator.API.AuthView do
   def type do
     "sessions"
   end
-
-  # Temporary
-  def id(_, __) do
-    123
-  end
 end
