@@ -1,4 +1,7 @@
 swagger: '2.0'
+host: "integrator-elixir.herokuapp.com"
+schemes:
+  - https
 paths:
 
   /api/session:
