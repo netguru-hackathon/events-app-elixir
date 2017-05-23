@@ -3,7 +3,7 @@ defmodule Integrator.API.EventView do
   use JaSerializer.PhoenixView
 
   location "/events/:id"
-  attributes [:name, :description, :inserted_at, :updated_at, :avatar_url]
+  attributes [:name, :description, :inserted_at, :updated_at, :image]
 
   has_one :organisation,
     include: false,
@@ -13,6 +13,8 @@ defmodule Integrator.API.EventView do
     serializer: Integrator.API.ItemView,
     include: false,
     identifiers: :when_included
+
+  def image(event, _), do: event.avatar_url
 
   def render("error.json", conn) do
     %{

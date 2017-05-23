@@ -6,6 +6,7 @@ defmodule Integrator.Item do
     field :start_time, Ecto.DateTime
     field :end_time, Ecto.DateTime
     field :description, :string
+    field :image, :string
     belongs_to :event, Integrator.Event
 
     timestamps()

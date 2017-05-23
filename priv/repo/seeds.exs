@@ -11,7 +11,7 @@ defmodule Integrator.Seeds do
         name: Faker.Company.buzzword,
         organisation_id: organisation.id,
         description: Faker.Lorem.paragraph,
-        avatar_url: Faker.Avatar.image_url}
+        avatar_url: Faker.Avatar.image_url |> String.replace("http", "https")}
     )
     create_items(event, Enum.random(4..10))
   end
@@ -32,6 +32,7 @@ defmodule Integrator.Seeds do
         start_time: Ecto.DateTime.cast!(Faker.DateTime.forward(10)),
         end_time: Ecto.DateTime.cast!(Faker.DateTime.forward(11)),
         description: Faker.Lorem.paragraph,
+        image: Faker.Avatar.image_url |> String.replace("http", "https"),
         event_id: event.id}
     )
   end
