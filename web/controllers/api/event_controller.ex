@@ -21,8 +21,8 @@ defmodule Integrator.API.EventController do
         |> render("show.json-api",
           data: event,
           opts: [
-            include: "items,users",
-            fields: %{"items" => "name,description", "users" => "email"}
+            include: "items",
+            fields: %{"items" => "name,description"}
           ]
         )
     end

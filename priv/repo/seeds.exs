@@ -18,11 +18,12 @@ defmodule Integrator.Seeds do
     )
   end
 
-  def create_users(_), do: create_user
   def create_users(n) when n >= 1 do
     create_user
-    create_users(n)
+    create_users(n - 1)
   end
+  def create_users(_), do: create_user
+
 
   def create_event_participation(user, event) do
     Integrator.Repo.insert(
@@ -37,11 +38,11 @@ defmodule Integrator.Seeds do
     events = Integrator.Repo.all(Integrator.Event)
     users = Integrator.Repo.all(Integrator.User)
 
-    Enum.each(events, fn(event) ->
+    for event <- events do
       Enum.each((5..30), fn(_) ->
         create_event_participation(Enum.random(users), event)
       end)
-    end)
+    end
   end
 
   def create_event(organisation) do
