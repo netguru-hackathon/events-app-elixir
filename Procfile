@@ -1,1 +1,1 @@
-web: MIX_ENV=stag mix phoenix.server
+web: MIX_ENV=prod mix phoenix.server
