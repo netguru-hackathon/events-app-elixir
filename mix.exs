@@ -22,7 +22,7 @@ defmodule Integrator.Mixfile do
                     :phoenix_ecto, :postgrex, :faker, :mime, :oauth2, :scrivener_ecto] ++ env_applications(Mix.env)]
   end
 
-  defp env_applications(:prod), do: [:rolbax]
+  defp env_applications(:prod), do: [:rollbax]
   defp env_applications(:test), do: []
   defp env_applications(:dev), do: []
 
