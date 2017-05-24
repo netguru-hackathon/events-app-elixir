@@ -8,4 +8,10 @@ defmodule Integrator.API.UserView do
   def name(user, _) do
     user.first_name
   end
+
+  def render("error.json", conn) do
+    %{
+      errors: conn.message
+    }
+  end
 end

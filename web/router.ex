@@ -55,6 +55,7 @@ defmodule Integrator.Router do
 
     resources "/events", EventController do
       post "/join", EventController, :join, as: :join
+      resources "/users", EventUsersController, only: [:index]
     end
   end
 
