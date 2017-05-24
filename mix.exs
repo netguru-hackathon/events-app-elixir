@@ -19,7 +19,7 @@ defmodule Integrator.Mixfile do
   def application do
     [mod: {Integrator, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :faker, :mime, :oauth2, :scrivener_ecto]]
+                    :phoenix_ecto, :postgrex, :faker, :mime, :oauth2, :scrivener_ecto, :rollbax]]
   end
 
 
@@ -47,7 +47,8 @@ defmodule Integrator.Mixfile do
      {:guardian, "~> 0.14"},
      {:scrivener_ecto, "~> 1.0"},
      {:phoenix_swagger, git: "https://github.com/xerions/phoenix_swagger.git", tag: "master"},
-     {:ex_json_schema, "~> 0.5"}]
+     {:ex_json_schema, "~> 0.5"},
+     {:rollbax, "~> 0.6"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

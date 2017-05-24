@@ -18,4 +18,7 @@ config :integrator, Integrator.Repo,
 config :guardian, Guardian,
   secret_key: System.get_env("SECRET_KEY_BASE")
 
-config :oauth2, debug: true
+config :rollbax,
+  access_token: "ae5c749f51d8489ba458c9d40da0bd0d",
+  environment: "production",
+  enabled: :log
