@@ -47,8 +47,14 @@ defmodule Slack do
       %{"ok" => false, "error" => error} -> {:error, error}
     end
   end
+
   defp _get_user(user, team) do
-    user_params = %{email: user["email"], slack_id: user["id"], slack_team_id: team["id"]}
+    user_params = %{email: user["email"],
+      first_name: user["name"],
+      avatar_url: user["image_512"],
+      slack_id: user["id"],
+      slack_team_id: team["id"]}
+
     {:ok, user_params}
   end
 

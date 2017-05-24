@@ -3,5 +3,9 @@ defmodule Integrator.API.UserView do
   use JaSerializer.PhoenixView
 
   location "/users/:id"
-  attributes [:email]
+  attributes [:email, :name, :avatar_url]
+
+  def name(user, _) do
+    user.first_name
+  end
 end
