@@ -11,6 +11,7 @@ defmodule Integrator.User do
     field :role, :string
     field :first_name, :string
     field :last_name, :string
+    many_to_many :events, Integrator.Event, join_through: "event_participations"
 
     timestamps()
   end
