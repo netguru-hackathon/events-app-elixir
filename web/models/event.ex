@@ -7,6 +7,7 @@ defmodule Integrator.Event do
     field :avatar_url, :string
     belongs_to :organisation, Integrator.Organisation
     has_many :items, Integrator.Item
+    many_to_many :users, Integrator.User, join_through: "event_participations"
     timestamps()
   end
 

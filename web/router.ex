@@ -53,7 +53,9 @@ defmodule Integrator.Router do
   scope "/api", Integrator.API do
     pipe_through :api
 
-    resources "/events", EventController
+    resources "/events", EventController do
+      post "/join", EventController, :join, as: :join
+    end
   end
 
   scope "/api/session", Integrator.API do

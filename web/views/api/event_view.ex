@@ -14,6 +14,12 @@ defmodule Integrator.API.EventView do
     include: false,
     identifiers: :when_included
 
+  has_many :users,
+    serializer: Integrator.API.UserView,
+    include: false,
+    identifiers: :when_included
+
+
   def image(event, _), do: event.avatar_url
 
   def render("error.json", conn) do

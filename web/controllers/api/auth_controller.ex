@@ -4,20 +4,6 @@ defmodule Integrator.API.AuthController do
   alias Integrator.User
   use PhoenixSwagger
 
-  swagger_path :create do
-    post "/api/session"
-    description "Auth user with slack"
-    produces "application/json"
-    consumes "application/json"
-    tag "Session"
-    operation_id "create_session"
-    parameters do
-      code :body, :string, "Authorisation Code Grant", required: true, example: "{\"code\":\"Slack code\"}"
-    end
-    response 201, "Success"
-    response 400, "Client Error"
-  end
-
   def create(conn, params) do
     client = Slack.get_token!(code: params["code"])
 
