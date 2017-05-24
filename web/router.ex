@@ -1,5 +1,6 @@
 defmodule Integrator.Router do
   use Integrator.Web, :router
+  use Plug.ErrorHandler
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -65,6 +66,10 @@ defmodule Integrator.Router do
     pipe_through :api_auth
 
     resources "/", AuthController, singular: true
+  end
+
+  defp handle_errors(conn, %{kind: kind, reason: reason, stack: stacktrace}) do
+    Rollbax.report(kind, reason, stacktrace)
   end
 
   def swagger_info do
