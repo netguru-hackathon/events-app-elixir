@@ -50,7 +50,7 @@ defmodule Integrator.Seeds do
         name: Faker.Company.buzzword,
         organisation_id: organisation.id,
         description: Faker.Lorem.paragraph,
-        avatar_url: "https://unsplash.it/200/300?image={Enum.random(1..500)}" }
+        avatar_url: "https://unsplash.it/200/300?image=#{Enum.random(1..500)}" }
     )
     create_items(event, Enum.random(4..10))
   end
@@ -71,7 +71,7 @@ defmodule Integrator.Seeds do
         start_time: Ecto.DateTime.cast!(Faker.DateTime.forward(10)),
         end_time: Ecto.DateTime.cast!(Faker.DateTime.forward(11)),
         description: Faker.Lorem.paragraph,
-        image: "https://unsplash.it/200/300?image={Enum.random(501..1084)}",
+        image: "https://unsplash.it/200/300?image=#{Enum.random(501..1084)}",
         event_id: event.id}
     )
   end
