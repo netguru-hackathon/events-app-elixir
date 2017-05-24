@@ -19,9 +19,12 @@ defmodule Integrator.Mixfile do
   def application do
     [mod: {Integrator, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :faker, :mime, :oauth2, :scrivener_ecto, :rollbax]]
+                    :phoenix_ecto, :postgrex, :faker, :mime, :oauth2, :scrivener_ecto] ++ env_applications(Mix.env)]
   end
 
+  defp env_applications(:prod), do: [:rolbax]
+  defp env_applications(:test), do: []
+  defp env_applications(:dev), do: []
 
 
   # Specifies which paths to compile per environment.
