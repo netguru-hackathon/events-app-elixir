@@ -11,6 +11,7 @@ defmodule Integrator.User do
     field :role, :string
     field :first_name, :string
     field :last_name, :string
+    field :avatar_url, :string
     many_to_many :events, Integrator.Event, join_through: "event_participations"
 
     timestamps()
@@ -21,7 +22,7 @@ defmodule Integrator.User do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:slack_id, :slack_team_id, :email, :role, :first_name, :last_name])
+    |> cast(params, [:slack_id, :slack_team_id, :email, :role, :first_name, :last_name, :avatar_url])
     |> validate_required([:slack_id, :slack_team_id, :email])
   end
 
