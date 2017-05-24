@@ -6,7 +6,7 @@
 
 defmodule Integrator.Seeds do
   def create_user do
-    {:ok, user} = Integrator.Repo.insert(
+    Integrator.Repo.insert(
       %Integrator.User{
         first_name: Faker.Name.first_name,
         last_name: Faker.Name.last_name,
@@ -19,10 +19,10 @@ defmodule Integrator.Seeds do
   end
 
   def create_users(n) when n >= 1 do
-    create_user
+    create_user()
     create_users(n - 1)
   end
-  def create_users(_), do: create_user
+  def create_users(_), do: create_user()
 
 
   def create_event_participation(user, event) do
