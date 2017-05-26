@@ -10,7 +10,7 @@ defmodule Integrator.API.EventController do
       page: params["page"]["page"],
       page_size: params["page"]["page_size"])
 
-    render(conn, "index.json-api", data: events)
+    render(conn, "index.json-api", data: events, opts: [page: %{base_url: "/events"}])
   end
 
   def show(conn, %{"id" => id}) do
