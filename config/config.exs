@@ -45,6 +45,9 @@ config :guardian, Guardian,
   secret_key: "YgkQAfevhyqaEovyOJx/SMoUo6ysmaPP3ctQhHbBNhcBTYw2lb0s4Wkvh6su7+72",
   serializer: Integrator.GuardianSerializer
 
+config :ja_serializer,
+  scrivener_base_url: "/"
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
