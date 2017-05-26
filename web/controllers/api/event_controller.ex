@@ -6,7 +6,10 @@ defmodule Integrator.API.EventController do
   use PhoenixSwagger
 
   def index(conn, params) do
-    events = Repo.paginate(Event, page: params["page"]["page"])
+    events = Repo.paginate(Event,
+      page: params["page"]["page"],
+      page_size: params["page"]["page_size"])
+
     render(conn, "index.json-api", data: events)
   end
 
