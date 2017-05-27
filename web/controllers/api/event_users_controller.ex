@@ -4,11 +4,15 @@ defmodule Integrator.API.EventUsersController do
 
   alias Integrator.User
 
-  def index(conn, params) do
-    users = Repo.paginate(User, page: params["page"]["page"])
+  def index(conn, %{"event_id" => event_id, "page" => %{"page" => page, "page_size" => page_size}}) do
+    users = Repo.paginate(User, page: page, page_size: page_size)
 
     conn
-    |> render(Integrator.API.UserView, "index.json-api", data: users)
+    |> render(Integrator.API.UserView, "index.json-api",
+        data: users,
+        opts: [
+          page: %{base_url: "/events/#{event_id}/users"}
+        ])
   end
 
   def unauthenticated(conn, _params) do
