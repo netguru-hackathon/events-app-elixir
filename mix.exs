@@ -50,7 +50,8 @@ defmodule Integrator.Mixfile do
      {:scrivener_ecto, "~> 1.0"},
      {:phoenix_swagger, git: "https://github.com/xerions/phoenix_swagger.git", tag: "master"},
      {:ex_json_schema, "~> 0.5"},
-     {:rollbax, "~> 0.6"}]
+     {:rollbax, "~> 0.6"},
+     {:cors_plug, "~> 1.2"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
