@@ -38,5 +38,6 @@ defmodule Integrator.Endpoint do
     key: "_integrator_key",
     signing_salt: "ELRNEVbv"
 
+  plug CORSPlug
   plug Integrator.Router
 end
